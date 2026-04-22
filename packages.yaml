@@ -1,0 +1,30 @@
+packages:
+  - podman
+  - openssh
+  - networkmanager
+  - fwupd
+  - cups
+  - bluez
+  - intel-ucode
+  - power-profiles-daemon
+  - flatpak
+  - pipewire
+  - wireplumber
+
+  - man-db
+  - man-pages
+  - lshw
+  - stow
+  - sudo
+  - fish
+  - nano
+  - zoxide
+  - fzf
+  - eza
+  - bat
+
+files:
+  /var/lib/flatpak/overrides/global:
+    content: |
+      [Context]
+      filesystems=/var/home/mrrain/.themes;

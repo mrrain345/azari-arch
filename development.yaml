@@ -1,0 +1,8 @@
+packages:
+  - git
+  - rust
+  - npm
+  - docker
+  - docker-compose
+  - docker-buildx
+  - nvidia-container-toolkit

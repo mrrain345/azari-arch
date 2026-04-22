@@ -1,0 +1,22 @@
+distro: arch
+name: AzariOS
+image: ghcr.io/mrrain345/azari-arch
+hostname: azari
+
+import:
+  - locale.yaml
+  - user.yaml
+  - nvidia.yaml
+  - install.yaml
+  - packages.yaml
+  - aur.yaml
+  - development.yaml
+  - hyprland.yaml
+
+postinstall:
+  - systemctl enable NetworkManager
+  - systemctl enable fwupd
+  - systemctl enable cups
+  - systemctl enable bluetooth
+  - systemctl enable power-profiles-daemon
+  - bootc container lint

@@ -1,0 +1,11 @@
+[user]
+	name = MrRaiN
+	email = mc.rain345@gmail.com
+[init]
+	defaultBranch = main
+[submodule]
+	recurse = true
+[push]
+	recurseSubmodules = on-demand
+[alias]
+	graph = log --all --decorate --oneline --graph

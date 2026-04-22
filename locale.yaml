@@ -1,0 +1,17 @@
+files:
+  "/etc/vconsole.conf":
+    content: |
+      KEYMAP=pl
+
+  "/etc/locale.conf":
+    content: |
+      LANG=en_US.UTF-8
+
+  "/etc/localtime":
+    symlink: /usr/share/zoneinfo/Europe/Warsaw
+
+  "/etc/pacman.d/mirrorlist":
+    content: |
+      Server = https://berlin.mirror.pkgbuild.com/$repo/os/$arch
+      Server = https://fastly.mirror.pkgbuild.com/$repo/os/$arch
+      Server = https://cloudflaremirrors.com/archlinux/$repo/os/$arch

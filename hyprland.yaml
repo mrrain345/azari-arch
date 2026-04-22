@@ -1,0 +1,35 @@
+packages:
+  - hyprland
+  - hyprlock
+  - hyprpolkitagent
+  - hypridle
+  - hyprpaper
+  - hyprshot
+  - dms-shell
+
+  - uwsm
+  - gnome-keyring
+  - libsecret
+  - wl-clip-persist
+  - xdg-desktop-portal-gtk
+  - xdg-desktop-portal-hyprland
+  - xdg-user-dirs
+
+  - ghostty
+  - nautilus
+  - code
+
+#files:
+#  "/etc/fish/conf.d/hyprland.fish":
+#    content: |
+#      if status is-login && [ $USER = "mrrain" ]
+#        if uwsm check may-start
+#          exec uwsm start hyprland
+#        end
+#      end
+
+postinstall:
+  - systemctl enable --global hyprpolkitagent
+  - systemctl enable --global hypridle
+  - systemctl enable --global hyprpaper
+  - systemctl enable --global dms

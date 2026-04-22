@@ -1,0 +1,23 @@
+users:
+  mrrain:
+    fullname: MrRaiN
+    uid: 1000
+    shell: /bin/fish
+    groups:
+      - wheel
+
+files:
+  "/etc/sudoers.d/10-wheel":
+    content: |
+      %wheel ALL=(ALL) ALL
+
+  "/var/home/mrrain":
+    path: dotfiles
+    owner: mrrain
+    group: mrrain
+    mode: 700
+
+postinstall:
+  - usermod -aG docker mrrain
+  - rm -rf /var/home/mrrain/.*
+  - su mrrain -c "cd /var/home/mrrain/dotfiles && stow ."
