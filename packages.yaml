@@ -1,19 +1,10 @@
 packages:
   - podman
   - openssh
-  - networkmanager
-  - fwupd
-  - cups
-  - bluez
-  - intel-ucode
-  - power-profiles-daemon
   - flatpak
-  - pipewire
-  - wireplumber
 
   - man-db
   - man-pages
-  - lshw
   - stow
   - sudo
   - fish

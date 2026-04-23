@@ -1,0 +1,22 @@
+packages:
+  - adwaita-fonts
+  - awesome-terminal-fonts
+  - woff2-font-awesome
+  - adobe-source-code-pro-fonts
+  - adobe-source-sans-fonts
+  - nerd-fonts
+  - inter-font
+  - noto-fonts
+  - noto-fonts-cjk
+  - noto-fonts-emoji
+  - noto-fonts-extra
+  - ttf-fira-code
+  - ttf-fira-mono
+  - ttf-fira-sans
+  - ttf-firacode-nerd
+  - ttf-droid
+  - ttf-dejavu
+  - ttf-noto-nerd
+  - ttf-nerd-fonts-symbols
+  - ttf-roboto
+  - ttf-sourcecodepro-nerd

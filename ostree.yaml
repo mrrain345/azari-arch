@@ -1,0 +1,8 @@
+files:
+  "/usr/lib/ostree/prepare-root.conf":
+    content: |
+      [etc]
+      transient=true
+      [composefs]
+      enabled=yes
+

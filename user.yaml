@@ -19,5 +19,7 @@ files:
 
 postinstall:
   - usermod -aG docker mrrain
+  - usermod -aG audio mrrain
+  - usermod -aG video mrrain
   - rm -rf /var/home/mrrain/.*
   - su mrrain -c "cd /var/home/mrrain/dotfiles && stow ."

@@ -1,0 +1,23 @@
+packages:
+  - linux-headers
+  - networkmanager
+  - fwupd
+  - cups
+  - bluez
+  - lshw
+  - intel-ucode
+  - power-profiles-daemon
+  - nvidia-open-dkms
+  - nvidia-utils
+  - nvidia-prime
+  - nvtop
+  - pipewire
+  - pipewire-audio
+  - pipewire-alsa
+  - pipewire-pulse
+  - wireplumber
+  - pavucontrol
+  - sof-firmware
+
+postinstall:
+  - dkms autoinstall -k $(ls -1 /usr/lib/modules)

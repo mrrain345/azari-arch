@@ -4,8 +4,10 @@ packages:
   - hyprpolkitagent
   - hypridle
   - hyprpaper
+  - hyprpicker
   - hyprshot
   - dms-shell
+  - cava
 
   - uwsm
   - gnome-keyring
@@ -17,16 +19,8 @@ packages:
 
   - ghostty
   - nautilus
+  - ghostty-nautilus
   - code
-
-#files:
-#  "/etc/fish/conf.d/hyprland.fish":
-#    content: |
-#      if status is-login && [ $USER = "mrrain" ]
-#        if uwsm check may-start
-#          exec uwsm start hyprland
-#        end
-#      end
 
 postinstall:
   - systemctl enable --global hyprpolkitagent

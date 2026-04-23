@@ -1,9 +1,0 @@
-packages:
-  - linux-headers
-  - nvidia-open-dkms
-  - nvidia-utils
-  - nvidia-prime
-  - nvtop
-
-postinstall:
-  - dkms autoinstall -k $(ls -1 /usr/lib/modules)
