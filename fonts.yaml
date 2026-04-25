@@ -4,19 +4,19 @@ packages:
   - woff2-font-awesome
   - adobe-source-code-pro-fonts
   - adobe-source-sans-fonts
+  - ttf-sourcecodepro-nerd
   - nerd-fonts
+  - ttf-nerd-fonts-symbols
   - inter-font
   - noto-fonts
   - noto-fonts-cjk
   - noto-fonts-emoji
   - noto-fonts-extra
+  - ttf-noto-nerd
   - ttf-fira-code
   - ttf-fira-mono
   - ttf-fira-sans
   - ttf-firacode-nerd
   - ttf-droid
   - ttf-dejavu
-  - ttf-noto-nerd
-  - ttf-nerd-fonts-symbols
   - ttf-roboto
-  - ttf-sourcecodepro-nerd

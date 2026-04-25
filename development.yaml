@@ -6,3 +6,6 @@ packages:
   - docker-compose
   - docker-buildx
   - nvidia-container-toolkit
+
+postinstall:
+  - systemctl enable docker.socket

@@ -7,10 +7,24 @@ packages:
   - lshw
   - intel-ucode
   - power-profiles-daemon
-  - nvidia-open-dkms
-  - nvidia-utils
+
+  - mesa
+  - mesa-utils
+  # - nvidia-open-dkms
+  # - nvidia-utils
   - nvidia-prime
-  - nvtop
+  - libva-nvidia-driver
+  - intel-media-driver
+  - libva-utils
+  - vulkan-intel
+
+  - gstreamer
+  - gst-plugins-base
+  - gst-plugins-good
+  - gst-plugins-bad
+  - gst-plugins-ugly
+  - gst-libav
+
   - pipewire
   - pipewire-audio
   - pipewire-alsa
@@ -20,4 +34,7 @@ packages:
   - sof-firmware
 
 postinstall:
-  - dkms autoinstall -k $(ls -1 /usr/lib/modules)
+  - pacman -U --noconfirm https://archive.archlinux.org/packages/n/nvidia-open-dkms/nvidia-open-dkms-575.64.05-2-x86_64.pkg.tar.zst \
+    https://archive.archlinux.org/packages/n/nvidia-utils/nvidia-utils-575.64.05-2-x86_64.pkg.tar.zst
+  - dkms autoinstall -k $(ls -1 /usr/lib/modules | sort -Vr | head -n 1)
+  - systemctl enable nvidia-suspend.service nvidia-hibernate.service nvidia-resume.service

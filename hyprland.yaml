@@ -21,6 +21,7 @@ packages:
   - nautilus
   - ghostty-nautilus
   - code
+  - gnome-disk-utility
 
 postinstall:
   - systemctl enable --global hyprpolkitagent
