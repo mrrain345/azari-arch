@@ -8,4 +8,5 @@ packages:
   - nvidia-container-toolkit
 
 postinstall:
+  - CARGO_HOME=/tmp/cargo cargo install --locked --no-track --root /usr --git https://github.com/mrrain345/azari-cli.git && rm -rf /tmp/cargo
   - systemctl enable docker.socket

@@ -1,5 +1,14 @@
+preinstall:
+  - pacman -Syu --noconfirm
+  - pacman -U --noconfirm https://archive.archlinux.org/packages/l/linux/linux-6.16.9.arch1-1-x86_64.pkg.tar.zst
+    https://archive.archlinux.org/packages/l/linux-headers/linux-headers-6.16.9.arch1-1-x86_64.pkg.tar.zst
+    https://archive.archlinux.org/packages/l/linux-api-headers/linux-api-headers-6.16-2-x86_64.pkg.tar.zst
+    https://archive.archlinux.org/packages/n/nvidia-open-dkms/nvidia-open-dkms-575.64.05-2-x86_64.pkg.tar.zst
+    https://archive.archlinux.org/packages/n/nvidia-utils/nvidia-utils-575.64.05-2-x86_64.pkg.tar.zst
+  - echo "IgnorePkg=linux linux-headers nvidia-open-dkms nvidia-utils" >> /etc/pacman.conf
+
 packages:
-  - linux-headers
+  # - linux-headers
   - networkmanager
   - fwupd
   - cups
@@ -29,12 +38,18 @@ packages:
   - pipewire-audio
   - pipewire-alsa
   - pipewire-pulse
+  - pipewire-jack
   - wireplumber
   - pavucontrol
   - sof-firmware
 
 postinstall:
-  - pacman -U --noconfirm https://archive.archlinux.org/packages/n/nvidia-open-dkms/nvidia-open-dkms-575.64.05-2-x86_64.pkg.tar.zst \
-    https://archive.archlinux.org/packages/n/nvidia-utils/nvidia-utils-575.64.05-2-x86_64.pkg.tar.zst
-  - dkms autoinstall -k $(ls -1 /usr/lib/modules | sort -Vr | head -n 1)
-  - systemctl enable nvidia-suspend.service nvidia-hibernate.service nvidia-resume.service
+  - systemctl enable nvidia-suspend nvidia-hibernate nvidia-resume
+  - dracut --force /usr/lib/modules/6.16.9-arch1-1/initramfs.img --kver 6.16.9-arch1-1
+  - mv /boot/intel-ucode.img /usr/lib/azari/intel-ucode.img
+
+files:
+  "/usr/lib/tmpfiles.d/azari.conf":
+    content: |
+      #Type Path                            Mode UID  GID  Age  Argument
+      C     /usr/lib/azari/intel-ucode.img  -    -    -    -    /boot/intel-ucode.img

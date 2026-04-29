@@ -1,0 +1,39 @@
+distro: arch
+image: ghcr.io/mrrain345/azari-test
+
+preinstall:
+  - pacman -Syu --noconfirm base-devel git podman
+  - pacman -U --noconfirm https://archive.archlinux.org/packages/l/linux/linux-6.16.9.arch1-1-x86_64.pkg.tar.zst
+    https://archive.archlinux.org/packages/l/linux-headers/linux-headers-6.16.9.arch1-1-x86_64.pkg.tar.zst
+    https://archive.archlinux.org/packages/l/linux-api-headers/linux-api-headers-6.16-2-x86_64.pkg.tar.zst
+    https://archive.archlinux.org/packages/n/nvidia-open-dkms/nvidia-open-dkms-575.64.05-2-x86_64.pkg.tar.zst
+    https://archive.archlinux.org/packages/n/nvidia-utils/nvidia-utils-575.64.05-2-x86_64.pkg.tar.zst
+  - echo "IgnorePkg=linux linux-headers nvidia-open-dkms nvidia-utils" >> /etc/pacman.conf
+  - pacman -S --noconfirm bubblewrap
+  # - su mrrain -c "git clone https://aur.archlinux.org/paru.git /tmp/paru && makepkg -si --dir /tmp/paru --noconfirm && rm -rf /tmp/paru"
+  # - su mrrain -c "paru -S --noconfirm bootupd" ## only needed on ostree backend
+
+postinstall:
+  - dracut --force /usr/lib/modules/6.16.9-arch1-1/initramfs.img --kver 6.16.9-arch1-1
+
+users:
+  mrrain:
+    fullname: MrRaiN
+    uid: 1000
+    groups:
+      - wheel
+
+files:
+  "/usr/lib/ostree/prepare-root.conf":
+    content: |
+      [etc]
+      transient=true
+
+  "/usr/lib/composefs/setup-root-conf.toml":
+    content: |
+      [etc]
+      transient=true
+
+  "/etc/sudoers.d/10-wheel":
+    content: |
+      %wheel ALL=(ALL) ALL

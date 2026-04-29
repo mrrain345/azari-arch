@@ -22,4 +22,4 @@ postinstall:
   - usermod -aG audio mrrain
   - usermod -aG video mrrain
   - rm -rf /var/home/mrrain/.*
-  - su mrrain -c "cd /var/home/mrrain/dotfiles && stow ."
+  - su mrrain -c "stow --dir=/var/home/mrrain/dotfiles --target=/var/home/mrrain ."

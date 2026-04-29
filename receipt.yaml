@@ -1,10 +1,10 @@
 distro: arch
-name: AzariOS
+name: Azari
 image: ghcr.io/mrrain345/azari-arch
 hostname: azari
 
 import:
-  - ostree.yaml
+  - bootc.yaml
   - locale.yaml
   - user.yaml
   - hardware.yaml
@@ -15,9 +15,6 @@ import:
   - hyprland.yaml
 
 postinstall:
-  - systemctl enable NetworkManager
-  - systemctl enable fwupd
-  - systemctl enable cups
-  - systemctl enable bluetooth
-  - systemctl enable power-profiles-daemon
+  - systemctl enable NetworkManager fwupd cups bluetooth power-profiles-daemon
+  - rm -rf /var/cache/* /run/* /tmp/* /var/tmp/*
   - bootc container lint

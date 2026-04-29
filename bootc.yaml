@@ -1,0 +1,14 @@
+packages:
+  - podman
+  - bubblewrap
+
+files:
+  "/usr/lib/ostree/prepare-root.conf":
+    content: |
+      [etc]
+      transient=true
+
+  "/usr/lib/composefs/setup-root-conf.toml":
+    content: |
+      [etc]
+      transient=true

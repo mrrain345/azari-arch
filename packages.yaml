@@ -1,5 +1,4 @@
 packages:
-  - podman
   - openssh
   - flatpak
 
