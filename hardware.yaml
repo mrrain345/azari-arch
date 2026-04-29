@@ -46,6 +46,7 @@ packages:
 postinstall:
   - systemctl enable nvidia-suspend nvidia-hibernate nvidia-resume
   - dracut --force /usr/lib/modules/6.16.9-arch1-1/initramfs.img --kver 6.16.9-arch1-1
+  - rm /usr/lib/modules/6.19.14-arch1-1/initramfs.img && rmdir /usr/lib/modules/6.19.14-arch1-1
   - mv /boot/intel-ucode.img /usr/lib/azari/intel-ucode.img
 
 files:

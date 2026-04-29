@@ -17,4 +17,5 @@ import:
 postinstall:
   - systemctl enable NetworkManager fwupd cups bluetooth power-profiles-daemon
   - rm -rf /var/cache/* /run/* /tmp/* /var/tmp/*
+    /var/home/*/.cache/* /home/*/.cargo/registry/cache/* /home/*/.cargo/git/db/* /home/*/.cargo/git/checkouts/*
   - bootc container lint
