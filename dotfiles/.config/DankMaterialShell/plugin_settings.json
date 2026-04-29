@@ -1,0 +1,13 @@
+{
+  "calculator": {
+    "enabled": true,
+    "trigger": "=",
+    "calcEngine": "default"
+  },
+  "hueManager": {
+    "enabled": false
+  },
+  "emojiLauncher": {
+    "enabled": true
+  }
+}
