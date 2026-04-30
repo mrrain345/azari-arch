@@ -53,8 +53,6 @@ files:
         org.signal.Signal
 
 postinstall:
-  - usermod -aG docker mrrain
-  - usermod -aG audio mrrain
-  - usermod -aG video mrrain
+  - usermod -aG docker,audio,video mrrain
   - rm -rf /var/home/mrrain/.*
   # - su mrrain -c "stow --dir=/var/home/mrrain/dotfiles --target=/var/home/mrrain ."

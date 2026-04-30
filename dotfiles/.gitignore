@@ -1,0 +1,12 @@
+.config/user-dirs.dirs
+.config/dconf
+
+.config/Code
+!.config/Code/User/settings.json
+!.config/Code/User/chatLanguageModels.json
+!.config/Code/User/snippets
+
+.local/share/nautilus-python/extensions/__pycache__
+
+.vscode/extensions
+!.vscode/extensions/mrrain345.azari-theme-1.0.0
