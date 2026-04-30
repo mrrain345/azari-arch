@@ -26,6 +26,8 @@ packages:
   - intel-media-driver
   - libva-utils
   - vulkan-intel
+  - vulkan-mesa-layers
+  - vulkan-tools
 
   - gstreamer
   - gst-plugins-base
