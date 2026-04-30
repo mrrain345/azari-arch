@@ -11,15 +11,50 @@ files:
     content: |
       %wheel ALL=(ALL) ALL
 
-  "/var/home/mrrain":
-    path: dotfiles
+  "/etc/xdg/user-dirs.defaults":
+    content: |
+      PROJECTS=Code
+      DOCUMENTS=Documents
+      DOWNLOAD=Downloads
+      MUSIC=Music
+      PICTURES=Pictures
+      VIDEOS=Videos
+      DESKTOP=.local/share/desktop
+      TEMPLATES=.local/share/templates
+      PUBLICSHARE=.local/share/public
+
+  "/var/home/mrrain/install.sh":
     owner: mrrain
     group: mrrain
-    mode: 700
+    mode: 755
+    content: |
+      #/bin/sh
+
+      gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+      gsettings set org.gnome.desktop.privacy remember-recent-files false
+
+      git clone https://github.com/mrrain345/azari-arch.git ~/Code/azari-arch
+      stow --dir ~/Code/azari-arch/dotfiles --target ~ .
+
+      flatpak install app.drey.EarTag \
+        com.belmoussaoui.Authenticator \
+        com.github.tchx84.Flatseal \
+        com.google.Chrome \
+        com.obsproject.Studio \
+        io.bassi.Amberol \
+        io.github.celluloid_player.Celluloid \
+        io.missioncenter.MissionCenter \
+        org.gnome.Calculator \
+        org.gnome.Platform \
+        org.gnome.Platform \
+        org.gnome.TextEditor \
+        org.gnome.World.PikaBackup \
+        org.nickvision.tubeconverter \
+        org.signal.Signal
 
 postinstall:
   - usermod -aG docker mrrain
   - usermod -aG audio mrrain
   - usermod -aG video mrrain
   - rm -rf /var/home/mrrain/.*
-  - su mrrain -c "stow --dir=/var/home/mrrain/dotfiles --target=/var/home/mrrain ."
+  # - su mrrain -c "stow --dir=/var/home/mrrain/dotfiles --target=/var/home/mrrain ."
