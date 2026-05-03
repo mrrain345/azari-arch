@@ -43,10 +43,11 @@ files:
         com.obsproject.Studio \
         io.bassi.Amberol \
         io.github.celluloid_player.Celluloid \
+        io.github.kolunmi.Bazaar \
         io.missioncenter.MissionCenter \
         org.gnome.Calculator \
-        org.gnome.Platform \
-        org.gnome.Platform \
+        org.gnome.Loupe \
+        org.gnome.Papers \
         org.gnome.TextEditor \
         org.gnome.World.PikaBackup \
         org.nickvision.tubeconverter \
@@ -54,5 +55,3 @@ files:
 
 postinstall:
   - usermod -aG docker,audio,video mrrain
-  - rm -rf /var/home/mrrain/.*
-  # - su mrrain -c "stow --dir=/var/home/mrrain/dotfiles --target=/var/home/mrrain ."

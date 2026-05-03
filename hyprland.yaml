@@ -16,14 +16,19 @@ packages:
   - xdg-desktop-portal-gtk
   - xdg-desktop-portal-hyprland
   - xdg-user-dirs
+  - gvfs-mtp
+  - ffmpegthumbnailer
 
   - ghostty
   - nautilus
+  - file-roller
+  - papers
   - ghostty-nautilus
   - code
   - gnome-disk-utility
 
 postinstall:
+  - su mrrain -c "paru -S --noconfirm ffmpeg-audio-thumbnailer code-marketplace hyprnome"
   - systemctl enable --global hyprpolkitagent
   - systemctl enable --global hypridle
   - systemctl enable --global hyprpaper

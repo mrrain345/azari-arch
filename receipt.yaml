@@ -5,16 +5,17 @@ hostname: azari
 
 import:
   - bootc.yaml
+  - aur.yaml
   - locale.yaml
   - user.yaml
   - hardware.yaml
   - packages.yaml
   - fonts.yaml
-  - aur.yaml
   - development.yaml
   - hyprland.yaml
 
 postinstall:
   - systemctl enable NetworkManager fwupd cups bluetooth power-profiles-daemon
-  - rm -rf /var/cache/* /run/* /tmp/* /var/tmp/* /var/home/*/.cache/* /home/*/.cargo
-  - bootc container lint
+  - env KERNEL_VERSION=$(pacman -Q linux | cut -d ' ' -f 2 | sed 's/\.arch/-arch/') bash -c 'dracut --force --kver $KERNEL_VERSION /usr/lib/modules/$KERNEL_VERSION/initramfs.img'
+  - rm -rf /boot/* /var/cache/* /run/* /tmp/* /var/tmp/* /var/home/*/.cache/* /home/*/.cargo
+  - bootc container lint --no-truncate

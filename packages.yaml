@@ -13,6 +13,7 @@ packages:
   - eza
   - bat
   - socat
+  - unzip
 
 files:
   /var/lib/flatpak/overrides/global:
