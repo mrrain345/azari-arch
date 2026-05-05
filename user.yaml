@@ -45,9 +45,9 @@ files:
         io.github.celluloid_player.Celluloid \
         io.github.kolunmi.Bazaar \
         io.missioncenter.MissionCenter \
+        it.mijorus.smile \
         org.gnome.Calculator \
         org.gnome.Loupe \
-        org.gnome.Papers \
         org.gnome.TextEditor \
         org.gnome.World.PikaBackup \
         org.nickvision.tubeconverter \

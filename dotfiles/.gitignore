@@ -1,6 +1,7 @@
 .config/user-dirs.dirs
 .config/dconf
 .config/DankMaterialShell/.*
+.config/cava
 
 .config/Code
 !.config/Code/User/settings.json

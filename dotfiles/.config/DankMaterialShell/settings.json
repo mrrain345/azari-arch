@@ -467,9 +467,9 @@
           "enabled": true
         }
       ],
-      "spacing": 2,
+      "spacing": 0,
       "innerPadding": 4,
-      "bottomGap": -8,
+      "bottomGap": -10,
       "transparency": 0,
       "widgetTransparency": 1,
       "squareCorners": true,
