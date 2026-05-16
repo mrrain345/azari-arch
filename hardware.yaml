@@ -1,14 +1,5 @@
-preinstall:
-  - pacman -Syu --noconfirm base-devel git podman
-  - pacman -U --noconfirm https://archive.archlinux.org/packages/l/linux/linux-6.16.9.arch1-1-x86_64.pkg.tar.zst
-    https://archive.archlinux.org/packages/l/linux-headers/linux-headers-6.16.9.arch1-1-x86_64.pkg.tar.zst
-    https://archive.archlinux.org/packages/l/linux-api-headers/linux-api-headers-6.16-2-x86_64.pkg.tar.zst
-    https://archive.archlinux.org/packages/n/nvidia-open-dkms/nvidia-open-dkms-575.64.05-2-x86_64.pkg.tar.zst
-    https://archive.archlinux.org/packages/n/nvidia-utils/nvidia-utils-575.64.05-2-x86_64.pkg.tar.zst
-  - echo "IgnorePkg=linux linux-headers linux-api-headers nvidia-open-dkms nvidia-utils" >> /etc/pacman.conf
-
 packages:
-  # - linux-headers
+  - linux-headers
   - networkmanager
   - fwupd
   - cups
@@ -19,8 +10,8 @@ packages:
 
   - mesa
   - mesa-utils
-  # - nvidia-open-dkms
-  # - nvidia-utils
+  - nvidia-open-dkms
+  - nvidia-utils
   - nvidia-prime
   - libva-nvidia-driver
   - intel-media-driver
@@ -46,5 +37,9 @@ packages:
   - sof-firmware
 
 postinstall:
-  # - envycontrol -s nvidia --force-comp
+  - env NVIDIA_VERSION=$(pacman -Q nvidia-open-dkms | cut -d ' ' -f 2 | cut -d '-' -f 1)
+    KERNEL_VERSION=$(pacman -Q linux | cut -d ' ' -f 2 | sed 's/\.arch/-arch/')
+    bash -c 'mkdir -p /usr/lib/modules/$KERNEL_VERSION/extramodules/ &&
+    cp -r /var/lib/dkms/nvidia/$NVIDIA_VERSION/$KERNEL_VERSION/x86_64/module/* /usr/lib/modules/$KERNEL_VERSION/extramodules/ &&
+    depmod -a -b /usr $KERNEL_VERSION && rm -rf /var/lib/dkms/nvidia'
   - systemctl enable nvidia-suspend nvidia-hibernate nvidia-resume

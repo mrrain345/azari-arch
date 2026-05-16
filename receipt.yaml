@@ -16,6 +16,7 @@ import:
 
 postinstall:
   - systemctl enable NetworkManager fwupd cups bluetooth power-profiles-daemon
-  - env KERNEL_VERSION=$(pacman -Q linux | cut -d ' ' -f 2 | sed 's/\.arch/-arch/') bash -c 'dracut --force --kver $KERNEL_VERSION /usr/lib/modules/$KERNEL_VERSION/initramfs.img'
-  - rm -rf /boot/* /var/cache/* /run/* /tmp/* /var/tmp/* /var/home/*/.cache/* /home/*/.cargo
+  - env KERNEL_VERSION=$(pacman -Q linux | cut -d ' ' -f 2 | sed 's/\.arch/-arch/')
+    bash -c 'dracut --force --kver $KERNEL_VERSION /usr/lib/modules/$KERNEL_VERSION/initramfs.img'
+  - rm -rf /boot/* /run/* /tmp/* /var/tmp/* /var/cache/* /var/lib/dkms /var/home/*/.cache/* /home/*/.cargo
   - bootc container lint --no-truncate
