@@ -14,3 +14,8 @@ files:
     content: |
       [etc]
       transient=true
+
+  # Fix resolv.conf permission issues
+  "/usr/lib/tmpfiles.d/azari-resolv.conf":
+    content: |
+      z /etc/resolv.conf 0644 root root - -
