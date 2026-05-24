@@ -23,6 +23,19 @@ files:
       TEMPLATES=.local/share/templates
       PUBLICSHARE=.local/share/public
 
+  "/etc/systemd/system/getty@tty1.service.d/autologin.conf":
+    content: |
+      [Service]
+      ExecStart=
+      ExecStart=-/usr/bin/agetty --noreset --noclear --autologin mrrain - ${TERM}
+
+  "/etc/pam.d/hyprlock":
+    content: |
+      auth        include     login
+      account     include     login
+      session     include     login
+      password    include     login
+
   "/var/home/mrrain/install.sh":
     owner: mrrain
     group: mrrain
@@ -55,3 +68,4 @@ files:
 
 postinstall:
   - usermod -aG docker,audio,video mrrain
+  - sed -i -e '/^account[[:space:]]/i auth       optional     pam_gnome_keyring.so' -e '/^session[[:space:]]/a session    optional     pam_gnome_keyring.so auto_start' /etc/pam.d/login
