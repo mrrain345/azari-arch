@@ -1,0 +1,48 @@
+{
+  "appearance": {
+    "anim": {
+      "durations": {
+        "scale": 0.8
+      }
+    },
+    "font": {
+      "scale": 0.8
+    }
+  },
+  "background": {
+    "desktopClock": {
+      "enabled": true,
+      "invertColors": true
+    },
+    "visualiser": {
+      "enabled": true
+    }
+  },
+  "bar": {
+    "activeWindow": {
+      "compact": true,
+      "showOnHover": true
+    },
+    "scrollActions": {
+      "brightness": false,
+      "volume": false,
+      "workspaces": true
+    },
+    "status": {
+      "showAudio": true
+    }
+  },
+  "dashboard": {
+    "performance": {
+      "showBattery": false
+    }
+  },
+  "general": {
+    "apps": {
+      "audio": ["pavucontrol"],
+      "explorer": ["nautilus"],
+      "playback": ["mpv"],
+      "terminal": ["ghostty"]
+    }
+  }
+}

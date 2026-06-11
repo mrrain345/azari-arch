@@ -1,0 +1,61 @@
+enable_esc_key = true
+
+[animations]
+enabled = true
+
+[modules]
+left = ["Workspaces", "WindowTitle"]
+center = ["Tempo", "Notifications"]
+right = ["Tray", "Privacy", "Settings"]
+
+[workspaces]
+visibility_mode = "MonitorSpecific"
+
+[tray]
+right_click = "menu"
+
+[tempo]
+clock_format = "%a %Y-%m-%d %H:%M:%S"
+timezones = ["Europe/Warsaw", "UTC"]
+weather_location = { City = "Zielona Góra" }
+wind_speed_unit = "Kmh"
+
+[settings]
+lock_cmd = "hyprlock &"
+audio_indicator_format = "IconAndPercentage"
+battery_format = "IconAndTime"
+battery_hide_when_full = true
+# remove_idle_btn = true
+remove_airplane_btn = true
+remove_idle_btn = true
+indicators = [
+  "IdleInhibitor",
+  "PowerProfile",
+  "Audio",
+  # "Microphone",
+  # "Bluetooth",
+  "Network",
+  # "Vpn",
+  "Battery",
+  "Brightness",
+]
+
+[osd]
+enabled = true
+timeout = 2000
+show_volume_percentage = true
+show_brightness_percentage = true
+
+[appearance]
+primary_color = "#7aa2f7"
+success_color = "#9ece6a"
+warning_color = "#e0af68"
+danger_color = "#f7768e"
+text_color = "#a9b1d6"
+
+workspace_colors = ["#7aa2f7"]
+
+[appearance.background_color]
+base = "#1a1b26"
+weak = "#24273a"
+strong = "#414868"

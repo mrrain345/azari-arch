@@ -6,7 +6,7 @@ packages:
   - hyprpaper
   - hyprpicker
   - hyprshot
-  - dms-shell
+  # - dms-shell
   - cava
 
   - uwsm
@@ -18,6 +18,7 @@ packages:
   - xdg-user-dirs
   - gvfs-mtp
   - ffmpegthumbnailer
+  - adwaita-icon-theme
 
   - ghostty
   - nautilus
@@ -28,8 +29,8 @@ packages:
   - gnome-disk-utility
 
 postinstall:
-  - su mrrain -c "paru -S --noconfirm ffmpeg-audio-thumbnailer code-marketplace hyprnome"
+  - su mrrain -c "paru -S --noconfirm ffmpeg-audio-thumbnailer code-marketplace hyprnome noctalia-shell ashell"
   - systemctl enable --global hyprpolkitagent
   - systemctl enable --global hypridle
   - systemctl enable --global hyprpaper
-  - systemctl enable --global dms
+  # - systemctl enable --global dms

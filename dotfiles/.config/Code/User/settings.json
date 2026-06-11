@@ -105,5 +105,6 @@
     "cargo test": true,
     "cargo build": true,
     "cargo check": true
-  }
+  },
+  "markdown-preview-github-styles.colorTheme": "system"
 }
