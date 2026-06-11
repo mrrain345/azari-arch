@@ -1,0 +1,36 @@
+# To generate password file, run:
+# openssl passwd -6 > ~/.config/passwd
+# chmod 600 ~/.config/passwd
+
+files:
+  "/usr/libexec/set-user-passwd":
+    chmod: 700
+    content: |
+      #!/bin/sh
+      set -euo pipefail
+      userdbctl -R --output=classic | while read -r USER_ENTRY; do
+        USER_NAME=$(echo "$USER_ENTRY" | cut -d: -f1)
+        USER_HOME=$(echo "$USER_ENTRY" | cut -d: -f6)
+        PASSWD_FILE="$USER_HOME/.config/passwd"
+
+        if [ -f "$PASSWD_FILE" ]; then
+          echo "Setting password for user $USER_NAME from $PASSWD_FILE"
+          echo "$USER_NAME:$(cat "$PASSWD_FILE")" | chpasswd -e
+        fi
+      done
+
+  "/etc/systemd/system/set-user-password.service":
+    content: |
+      [Unit]
+      Description=Set user password from stored hash
+      After=local-fs.target
+
+      [Service]
+      Type=oneshot
+      ExecStart=/usr/libexec/set-user-passwd
+
+      [Install]
+      WantedBy=multi-user.target
+
+postinstall:
+  - systemctl enable set-user-password

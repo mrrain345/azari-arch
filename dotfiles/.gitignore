@@ -1,3 +1,5 @@
+.config/passwd
+
 .config/user-dirs.dirs
 .config/dconf
 .config/DankMaterialShell/.*

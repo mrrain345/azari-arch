@@ -5,6 +5,7 @@ hostname: azari
 
 import:
   - bootc.yaml
+  - passwd.yaml
   - aur.yaml
   - locale.yaml
   - user.yaml
