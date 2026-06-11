@@ -6,3 +6,6 @@ if status is-interactive
   zoxide init fish --cmd cd | source
   #oh-my-posh init fish --config ~/.config/oh-my-posh/config.yaml | source
 end
+
+# OpenClaw Completion
+test -f "/var/home/mrrain/.openclaw/completions/openclaw.fish"; and source "/var/home/mrrain/.openclaw/completions/openclaw.fish"
