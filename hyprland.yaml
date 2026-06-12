@@ -2,6 +2,7 @@ packages:
   - hyprland
   - hyprlock
   - hyprpolkitagent
+  - hyprshutdown
   - hypridle
   - hyprpaper
   - hyprpicker
@@ -28,7 +29,5 @@ packages:
   - gnome-disk-utility
 
 postinstall:
-  - su mrrain -c "paru -S --noconfirm ffmpeg-audio-thumbnailer code-marketplace hyprnome noctalia-shell"
-  - systemctl enable --global hyprpolkitagent
-  - systemctl enable --global hypridle
-  - systemctl enable --global hyprpaper
+  - su mrrain -c "paru -S --noconfirm ffmpeg-audio-thumbnailer code-marketplace noctalia-shell"
+  - systemctl enable --global hyprpolkitagent hypridle hyprpaper
