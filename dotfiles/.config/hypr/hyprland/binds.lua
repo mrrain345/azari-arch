@@ -26,28 +26,26 @@ hl.bind("SUPER + CTRL + X", hl.dsp.window.kill())
 hl.bind("F11", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 
 -- Screenshots
-hl.bind("Print", hl.dsp.exec_cmd("hyprshot -m region"))
-hl.bind("SUPER + Print", hl.dsp.exec_cmd("hyprshot-no-cursor -m window -m active"))
-hl.bind("SUPER + CTRL + Print", hl.dsp.exec_cmd("hyprshot-no-cursor -m output -m active"))
+require("utils/screenshot")
+hl.bind("Print", screenshot("region"))
+hl.bind("SUPER + Print", screenshot("window"))
+hl.bind("SUPER + CTRL + Print", screenshot("output"))
 
--- Audio control (locked = true means they work on lockscreen)
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true })
-hl.bind("SUPER + F9", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
-hl.bind("SUPER + ALT + F9", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), { locked = true })
+-- Audio control
+require("utils/audio")
+hl.bind("XF86AudioMute", toggle_mute("speaker"))
+hl.bind("XF86AudioMicMute", toggle_mute("microphone"))
+hl.bind("SUPER + F9", toggle_mute("speaker"))
+hl.bind("SUPER + ALT + F9", toggle_mute("microphone"))
 
--- Volume control (repeating = true for volume hold)
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 5%-"),
-  { repeating = true, locked = true })
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 5%+"),
-  { repeating = true, locked = true })
-hl.bind("SUPER + F10", hl.dsp.exec_cmd("wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true })
-hl.bind("SUPER + F11", hl.dsp.exec_cmd("wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true })
-hl.bind("SUPER + CTRL + F10", hl.dsp.exec_cmd("wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 1%-"), { repeating = true })
-hl.bind("SUPER + CTRL + F11", hl.dsp.exec_cmd("wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 1%+"), { repeating = true })
+-- Volume control
+hl.bind("XF86AudioLowerVolume", adjust_volume("speaker", "down", 5), { repeating = true })
+hl.bind("XF86AudioRaiseVolume", adjust_volume("speaker", "up", 5), { repeating = true })
+hl.bind("SUPER + F10", adjust_volume("speaker", "down", 5), { repeating = true })
+hl.bind("SUPER + F11", adjust_volume("speaker", "up", 5), { repeating = true })
+hl.bind("SUPER + CTRL + F10", adjust_volume("speaker", "down", 1), { repeating = true })
+hl.bind("SUPER + CTRL + F11", adjust_volume("speaker", "up", 1), { repeating = true })
 
 -- Microphone volume control
-hl.bind("SUPER + ALT + F10", hl.dsp.exec_cmd("wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SOURCE@ 1%-"),
-  { repeating = true })
-hl.bind("SUPER + ALT + F11", hl.dsp.exec_cmd("wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SOURCE@ 1%+"),
-  { repeating = true })
+hl.bind("SUPER + ALT + F10", adjust_volume("microphone", "down", 1), { repeating = true })
+hl.bind("SUPER + ALT + F11", adjust_volume("microphone", "up", 1), { repeating = true })

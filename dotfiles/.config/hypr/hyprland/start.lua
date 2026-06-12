@@ -12,16 +12,6 @@ hl.on("hyprland.start", function()
   end, { timeout = 1500, type = "oneshot" })
 end)
 
--- Fix Chrome fullscreen behavior
----@param window HL.Window
-local function chrome_fullscreen_fix(window)
-  if window.class == "google-chrome" and window.fullscreen == 1 then
-    hl.dispatch(hl.dsp.window.fullscreen({
-      mode = "maximized",
-      action = "unset",
-      window = window,
-    }))
-  end
-end
 
+require("utils/fullscreen_fix")
 hl.on("window.fullscreen", chrome_fullscreen_fix)

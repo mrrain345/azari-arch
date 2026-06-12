@@ -31,7 +31,7 @@ hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- Workspace navigation
-require("hyprland/ws_switcher")
+require("utils/ws_switcher")
 hl.bind("SUPER + CTRL + Left", ws_switch_previous)
 hl.bind("SUPER + CTRL + Right", ws_switch_next)
 hl.bind("SUPER + CTRL + SHIFT + Left", ws_window_move_previous)
