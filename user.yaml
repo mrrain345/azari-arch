@@ -29,8 +29,22 @@ files:
       ExecStart=
       ExecStart=-/usr/bin/agetty --noreset --noclear --autologin mrrain - ${TERM}
 
+  "/etc/pam.d/login":
+    content: |
+      #%PAM-1.0
+
+      auth       requisite    pam_nologin.so
+      auth       include      system-local-login
+      auth       optional     pam_gnome_keyring.so
+      account    include      system-local-login
+      session    include      system-local-login
+      session    optional     pam_gnome_keyring.so auto_start
+      password   include      system-local-login
+
   "/etc/pam.d/hyprlock":
     content: |
+      #%PAM-1.0
+
       auth        include     login
       account     include     login
       session     include     login
@@ -48,6 +62,8 @@ files:
 
       git clone https://github.com/mrrain345/azari-arch.git ~/Code/azari-arch
       stow --dir ~/Code/azari-arch/dotfiles --target ~ .
+
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
       flatpak install app.drey.EarTag \
         com.belmoussaoui.Authenticator \
@@ -68,4 +84,3 @@ files:
 
 postinstall:
   - usermod -aG docker,audio,video mrrain
-  - sed -i -e '/^account[[:space:]]/i auth       optional     pam_gnome_keyring.so' -e '/^session[[:space:]]/a session    optional     pam_gnome_keyring.so auto_start' /etc/pam.d/login

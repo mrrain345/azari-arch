@@ -1,3 +1,7 @@
+preinstall:
+  # Enable man pages
+  - sed -i 's|^\s*NoExtract\s*=\s*usr/share/man/\*\s*usr/share/info/\*|#&|' /etc/pacman.conf
+
 files:
   "/etc/vconsole.conf":
     content: |
