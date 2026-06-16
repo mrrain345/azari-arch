@@ -106,5 +106,6 @@
     "cargo build": true,
     "cargo check": true
   },
-  "markdown-preview-github-styles.colorTheme": "system"
+  "markdown-preview-github-styles.colorTheme": "system",
+  "chat.viewSessions.orientation": "stacked"
 }

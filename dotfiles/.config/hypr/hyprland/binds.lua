@@ -5,6 +5,7 @@ hl.bind("SUPER + Return", hl.dsp.exec_cmd("uwsm app -- ghostty"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd("uwsm app -- flatpak run com.google.Chrome"))
 hl.bind("SUPER + CTRL + B", hl.dsp.exec_cmd("uwsm app -- flatpak run com.google.Chrome --incognito"))
 hl.bind("SUPER + V", hl.dsp.exec_cmd("uwsm app -- code"))
+hl.bind("SUPER + CTRL + V", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call plugin:vscode-provider toggle"))
 hl.bind("SUPER + F", hl.dsp.exec_cmd("uwsm app -- nautilus --new-window"))
 hl.bind("SUPER + M", hl.dsp.exec_cmd("uwsm app -- flatpak run org.signal.Signal"))
 hl.bind("SUPER + K", hl.dsp.exec_cmd("uwsm app -- flatpak run org.gnome.Calculator"))
@@ -13,12 +14,12 @@ hl.bind("SUPER + T", hl.dsp.exec_cmd("uwsm app -- flatpak run org.gnome.TextEdit
 -- Launcher and utilities
 hl.bind("SUPER + A", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call launcher toggle"))
 hl.bind("SUPER + SEMICOLON", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call launcher emoji"))
-hl.bind("SUPER + CTRL + L", hl.dsp.exec_cmd("uwsm app -- hyprlock"))
 
 -- System control
 hl.bind("SUPER + CTRL + Escape", hl.dsp.exec_cmd("hyprshutdown -p 'systemctl poweroff'"))
 hl.bind("SUPER + CTRL + R", hl.dsp.exec_cmd("hyprshutdown -p 'systemctl reboot'"))
 hl.bind("SUPER + ALT + R", hl.dsp.exec_cmd("hyprshutdown -p 'uwsm stop'"))
+hl.bind("SUPER + CTRL + L", hl.dsp.exec_cmd("uwsm app -- hyprlock"))
 
 -- Window management
 hl.bind("SUPER + X", hl.dsp.window.close())
