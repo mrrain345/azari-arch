@@ -96,16 +96,15 @@
   "workbench.layoutControl.enabled": false,
   "window.menuBarVisibility": "compact",
   "python.analysis.typeCheckingMode": "standard",
-  "mdb.mcp.server": "prompt",
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "docker.extension.enableComposeLanguageServer": false,
   "chat.tools.terminal.autoApprove": {
     "cargo test": true,
     "cargo build": true,
     "cargo check": true
   },
   "markdown-preview-github-styles.colorTheme": "system",
-  "chat.viewSessions.orientation": "stacked"
+  "chat.viewSessions.orientation": "stacked",
+  "rust-analyzer.check.command": "clippy"
 }

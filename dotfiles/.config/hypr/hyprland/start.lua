@@ -8,12 +8,10 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("uwsm app -- flatpak run org.signal.Signal --start-in-tray")
 
   hl.timer(function()
+    hl.dispatch(hl.dsp.workspace.swap_monitors({ monitor1 = "eDP-1", monitor2 = "HDMI-A-1" }))
     hl.exec_cmd("uwsm app -- hyprlock --grace 0")
   end, { timeout = 1500, type = "oneshot" })
 end)
 
 require("utils/fullscreen_fix")
 hl.on("window.fullscreen", chrome_fullscreen_fix)
-
-hl.workspace_rule({ workspace = "1", monitor = "HDMI-A-1" })
-hl.workspace_rule({ workspace = "2", monitor = "eDP-1" })
