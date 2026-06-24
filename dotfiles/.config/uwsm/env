@@ -5,7 +5,7 @@ export HYPRCURSOR_THEME=Bibata-Azari
 export GTK_THEME=adw-gtk3
 export QT_QPA_PLATFORMTHEME=gtk3
 
-export AZARI_RECEIPT=$HOME/Code/azari-arch/receipt.yaml
+export AZARI_CONFIG=$HOME/Code/azari-arch/azari.yaml
 
 export NVD_BACKEND=direct
 export GBM_BACKEND=nvidia-drm
