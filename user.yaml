@@ -75,6 +75,7 @@ files:
         io.github.kolunmi.Bazaar \
         io.missioncenter.MissionCenter \
         it.mijorus.smile \
+        org.gimp.GIMP \
         org.gnome.Calculator \
         org.gnome.Loupe \
         org.gnome.TextEditor \

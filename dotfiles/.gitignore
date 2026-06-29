@@ -6,6 +6,7 @@
 .config/cava
 .config/go
 .config/pulse/cookie
+.config/GIMP
 
 .config/Code
 !.config/Code/User/settings.json

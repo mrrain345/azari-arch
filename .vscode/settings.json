@@ -4,5 +4,8 @@
     "dotfiles/.config/hypr/utils"
   ],
   "Lua.diagnostics.disable": ["lowercase-global"],
-  "Lua.workspace.ignoreDir": ["dotfiles", "!dotfiles/.config/hypr"]
+  "Lua.workspace.ignoreDir": ["dotfiles", "!dotfiles/.config/hypr"],
+  "yaml.schemas": {
+    ".vscode/schema.json": "*.yaml"
+  }
 }
