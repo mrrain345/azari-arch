@@ -5,6 +5,8 @@
 files:
   "/usr/libexec/set-user-passwd":
     chmod: 700
+    owner: root
+    group: root
     content: |
       #!/bin/sh
       set -euo pipefail
@@ -19,18 +21,18 @@ files:
         fi
       done
 
-  "/etc/systemd/system/set-user-password.service":
-    content: |
-      [Unit]
-      Description=Set user password from stored hash
-      After=local-fs.target
-
-      [Service]
-      Type=oneshot
-      ExecStart=/usr/libexec/set-user-passwd
-
-      [Install]
-      WantedBy=multi-user.target
+systemd:
+  set-user-password:
+    service:
+      enabled: true
+      unit:
+        description: Set user password from stored hash
+        after: local-fs.target
+      service:
+        type: oneshot
+        exec-start: /usr/libexec/set-user-passwd
+      install:
+        wanted-by: multi-user.target
 
 postinstall:
   - systemctl enable set-user-password

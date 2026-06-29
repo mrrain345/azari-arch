@@ -29,6 +29,19 @@ packages:
   - code
   - gnome-disk-utility
 
+systemd:
+  hyprpolkitagent:
+    user: true
+    service:
+      enabled: true
+  hypridle:
+    user: true
+    service:
+      enabled: true
+  hyprpaper:
+    user: true
+    service:
+      enabled: true
+
 postinstall:
   - su mrrain -c "paru -S --noconfirm ffmpeg-audio-thumbnailer code-marketplace noctalia-shell"
-  - systemctl enable --global hyprpolkitagent hypridle hyprpaper

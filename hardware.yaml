@@ -36,11 +36,20 @@ packages:
   - pavucontrol
   - sof-firmware
 
+systemd:
+  - NetworkManager
+  - fwupd
+  - cups
+  - bluetooth
+  - power-profiles-daemon
+  - avahi-daemon
+  - nvidia-suspend
+  - nvidia-hibernate
+  - nvidia-resume
+
 postinstall:
   - env NVIDIA_VERSION=$(pacman -Q nvidia-open-dkms | cut -d ' ' -f 2 | cut -d '-' -f 1)
     KERNEL_VERSION=$(pacman -Q linux | cut -d ' ' -f 2 | sed 's/\.arch/-arch/')
     bash -c 'mkdir -p /usr/lib/modules/$KERNEL_VERSION/extramodules/ &&
     cp -r /var/lib/dkms/nvidia/$NVIDIA_VERSION/$KERNEL_VERSION/x86_64/module/* /usr/lib/modules/$KERNEL_VERSION/extramodules/ &&
     depmod -a -b /usr $KERNEL_VERSION && rm -rf /var/lib/dkms/nvidia'
-  - systemctl enable NetworkManager fwupd cups bluetooth power-profiles-daemon avahi-daemon
-  - systemctl enable nvidia-suspend nvidia-hibernate nvidia-resume
