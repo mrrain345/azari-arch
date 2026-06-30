@@ -1,5 +1,6 @@
 packages:
   - base-devel
+  - git
 
 postinstall:
   - su mrrain -c "git clone https://aur.archlinux.org/paru.git /tmp/paru && makepkg -si --dir /tmp/paru --noconfirm && rm -rf /tmp/paru"

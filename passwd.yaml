@@ -33,6 +33,3 @@ systemd:
         exec-start: /usr/libexec/set-user-passwd
       install:
         wanted-by: multi-user.target
-
-postinstall:
-  - systemctl enable set-user-password
