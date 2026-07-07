@@ -10,6 +10,7 @@ import:
   - aur.yaml
   - locale.yaml
   - user.yaml
+  - postinstall.yaml
   - hardware.yaml
   - packages.yaml
   - fonts.yaml

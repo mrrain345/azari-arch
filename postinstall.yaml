@@ -1,0 +1,33 @@
+files:
+  "/var/home/mrrain/install.sh":
+    owner: mrrain
+    group: mrrain
+    mode: 755
+    content: |
+      #/bin/sh
+
+      gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+      gsettings set org.gnome.desktop.privacy remember-recent-files false
+
+      git clone https://github.com/mrrain345/azari-arch.git ~/Code/azari-arch
+      stow --dir ~/Code/azari-arch/dotfiles --target ~ .
+
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+      flatpak install app.drey.EarTag \
+        com.belmoussaoui.Authenticator \
+        com.github.tchx84.Flatseal \
+        com.google.Chrome \
+        com.obsproject.Studio \
+        io.bassi.Amberol \
+        io.github.celluloid_player.Celluloid \
+        io.github.kolunmi.Bazaar \
+        io.missioncenter.MissionCenter \
+        it.mijorus.smile \
+        org.gimp.GIMP \
+        org.gnome.Calculator \
+        org.gnome.Loupe \
+        org.gnome.TextEditor \
+        org.gnome.World.PikaBackup \
+        org.nickvision.tubeconverter \
+        org.signal.Signal

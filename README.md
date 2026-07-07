@@ -19,6 +19,7 @@ It defines the base image metadata and imports the rest of the system modules:
 - [aur.yaml](aur.yaml): AUR bootstrap (paru)
 - [locale.yaml](locale.yaml): system locale, keyboard layout, timezone, and arch mirrors
 - [user.yaml](user.yaml): user account, shell, PAM tweaks, post-install bootstrap
+- [postinstall.yaml](postinstall.yaml): user post-install script
 - [hardware.yaml](hardware.yaml): drivers, firmware, multimedia stack, enabled services
 - [packages.yaml](packages.yaml): baseline user-space packages
 - [fonts.yaml](fonts.yaml): system fonts
