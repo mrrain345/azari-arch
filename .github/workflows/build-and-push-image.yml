@@ -19,7 +19,8 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     env:
-      IMAGE: ghcr.io/${{ github.repository }}
+      REGISTRY: ghcr.io
+      IMAGE: ${{ github.repository }}
 
     steps:
       - name: Checkout repository
@@ -42,7 +43,6 @@ jobs:
 
           YY="$(date -u +%y)"
           MONTH="$(date -u +%-m)"
-          PREFIX="${YY}.${MONTH}."
           PACKAGE_NAME="${GITHUB_REPOSITORY#*/}"
 
           EXISTING_TAGS="$(
@@ -68,17 +68,19 @@ jobs:
           fi
 
           VERSION="${YY}.${MONTH}.${PATCH}"
-          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
           echo "Using version: ${VERSION}"
-
-      - name: Login to GHCR
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u "${{ github.actor }}" --password-stdin
 
       - name: Build image
         run: |
-          azari build --config ./azari.yaml --version "${{ steps.version.outputs.version }}" --image "${IMAGE}"
+          azari build --config ./azari.yaml --version "${{ env.VERSION }}" --image "${{ env.REGISTRY }}/${{ env.IMAGE }}"
 
-      - name: Push image
-        run: |
-          azari push --config ./azari.yaml --version "${{ steps.version.outputs.version }}" --image "${IMAGE}"
+      - name: Push image to GHCR
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: ${{ env.IMAGE }}
+          registry: ${{ env.REGISTRY }}
+          tags: latest ${{ env.VERSION }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          extra-args: --root=${{ env.XDG_CACHE_HOME }}/azari/storage
