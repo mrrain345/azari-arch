@@ -1,0 +1,34 @@
+packages:
+  - git
+  - podman
+  - rust
+
+systemd:
+  azari-auto-update:
+    service:
+      enabled: false
+      unit:
+        description: Auto update Azari Image
+        after: network-online.target
+      service:
+        type: oneshot
+        exec-start: /usr/bin/azari upgrade
+      install:
+        wanted-by: multi-user.target
+    timer:
+      enabled: true
+      unit:
+        description: Auto update Azari Image
+        after: network-online.target
+      timer:
+        on-calendar: daily
+        on-active-sec: 1h
+        randomized-delay-sec: 30m
+        persistent: true
+      install:
+        wanted-by: timers.target
+
+postinstall:
+  - CARGO_HOME=/tmp/cargo cargo install --locked --no-track --root /usr --git https://github.com/mrrain345/azari-cli.git && rm -rf /tmp/cargo
+  - azari generate schema --install
+  - azari generate shell all --install
