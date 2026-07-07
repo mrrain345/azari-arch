@@ -15,4 +15,6 @@ systemd:
 
 postinstall:
   - CARGO_HOME=/tmp/cargo cargo install --locked --no-track --root /usr --git https://github.com/mrrain345/azari-cli.git && rm -rf /tmp/cargo
+  - azari generate schema --install
+  - azari generate shell all --install
   # - su mrrain -c 'GOPATH=~/.cache/go paru -S --noconfirm openclaw gogcli'
