@@ -7,6 +7,7 @@ on:
     branches:
       - main
     paths:
+      - ".github/workflows/build-and-push-image.yml"
       - "**/*.yaml"
       - "!dotfiles/**"
       - "!.vscode/**"
@@ -19,8 +20,7 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     env:
-      REGISTRY: ghcr.io
-      IMAGE: ${{ github.repository }}
+      IMAGE: ghcr.io/${{ github.repository }}
 
     steps:
       - name: Checkout repository
@@ -67,20 +67,15 @@ jobs:
             PATCH="$((LAST_PATCH + 1))"
           fi
 
-          VERSION="${YY}.${MONTH}.${PATCH}"
-          echo "VERSION=${VERSION}" >> "$GITHUB_ENV"
-          echo "Using version: ${VERSION}"
+          IMAGE_VERSION="${YY}.${MONTH}.${PATCH}"
+          echo "IMAGE_VERSION=${IMAGE_VERSION}" >> "$GITHUB_ENV"
+          echo "Using version: ${IMAGE_VERSION}"
 
       - name: Build image
         run: |
-          azari build --config ./azari.yaml --version "${{ env.VERSION }}" --image "${{ env.REGISTRY }}/${{ env.IMAGE }}"
+          azari build --config ./azari.yaml --version "${{ env.IMAGE_VERSION }}" --image "${{ env.IMAGE }}"
 
       - name: Push image to GHCR
-        uses: redhat-actions/push-to-registry@v2
-        with:
-          image: ${{ env.IMAGE }}
-          registry: ${{ env.REGISTRY }}
-          tags: latest ${{ env.VERSION }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          extra-args: --root=${{ env.XDG_CACHE_HOME }}/azari/storage
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io --username "${{ github.actor }}" --password-stdin
+          azari push --config ./azari.yaml --version "${{ env.IMAGE_VERSION }}" --image "${{ env.IMAGE }}"
