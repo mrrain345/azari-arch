@@ -8,7 +8,7 @@ systemd:
     service:
       enabled: false
       unit:
-        description: Auto update Azari Image
+        description: Auto update Azari OS
         after: network-online.target
       service:
         type: oneshot
@@ -18,7 +18,7 @@ systemd:
     timer:
       enabled: true
       unit:
-        description: Auto update Azari Image
+        description: Auto update Azari OS
         after: network-online.target
       timer:
         on-calendar: daily
