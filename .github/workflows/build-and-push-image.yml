@@ -30,7 +30,8 @@ jobs:
 
       - name: Install Azari CLI
         run: |
-          sudo cargo install --locked --no-track --root /usr --git https://github.com/mrrain345/azari-cli.git
+          cargo install --locked --no-track --git https://github.com/mrrain345/azari-cli.git
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
 
       - name: Install Podman and GitHub CLI
         run: |
