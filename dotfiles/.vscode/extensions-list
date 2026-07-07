@@ -15,7 +15,7 @@ eamodio.gitlens
 editorconfig.editorconfig
 esbenp.prettier-vscode
 fill-labs.dependi
-github.copilot-chat
+humao.rest-client
 jeff-hykin.better-dockerfile-syntax
 mhutchie.git-graph
 ms-azuretools.vscode-containers
