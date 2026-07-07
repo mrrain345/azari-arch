@@ -1,0 +1,88 @@
+name: Build and Push Azari Image
+
+on:
+  schedule:
+    - cron: "0 2 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - "**/*.yaml"
+      - "!dotfiles/**"
+      - "!.vscode/**"
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE: ghcr.io/${{ github.repository }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Azari CLI
+        run: |
+          sudo cargo install --locked --no-track --root /usr --git https://github.com/mrrain345/azari-cli.git
+
+      - name: Install Podman and GitHub CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y podman gh
+
+      - name: Compute dynamic version
+        id: version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          YY="$(date -u +%y)"
+          MONTH="$(date -u +%-m)"
+          PREFIX="${YY}.${MONTH}."
+          PACKAGE_NAME="${GITHUB_REPOSITORY#*/}"
+
+          EXISTING_TAGS="$(
+            gh api \
+              "users/${GITHUB_REPOSITORY_OWNER}/packages/container/${PACKAGE_NAME}/versions?per_page=100" \
+              --jq '.[].metadata.container.tags[]?' 2>/dev/null || \
+            gh api \
+              "orgs/${GITHUB_REPOSITORY_OWNER}/packages/container/${PACKAGE_NAME}/versions?per_page=100" \
+              --jq '.[].metadata.container.tags[]?' 2>/dev/null || \
+            true
+          )"
+
+          LAST_PATCH="$(printf '%s\n' "$EXISTING_TAGS" \
+            | grep -E "^${YY}\\.${MONTH}\\.[0-9]+$" \
+            | cut -d. -f3 \
+            | sort -n \
+            | tail -n1 || true)"
+
+          if [ -z "$LAST_PATCH" ]; then
+            PATCH="0"
+          else
+            PATCH="$((LAST_PATCH + 1))"
+          fi
+
+          VERSION="${YY}.${MONTH}.${PATCH}"
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Using version: ${VERSION}"
+
+      - name: Login to GHCR
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u "${{ github.actor }}" --password-stdin
+
+      - name: Build image
+        run: |
+          azari build --config ./azari.yaml --version "${{ steps.version.outputs.version }}" --image "${IMAGE}"
+
+      - name: Push image
+        run: |
+          azari push --config ./azari.yaml --version "${{ steps.version.outputs.version }}" --image "${IMAGE}"
