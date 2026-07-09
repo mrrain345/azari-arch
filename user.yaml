@@ -5,6 +5,9 @@ users:
     shell: /bin/fish
     groups:
       - wheel
+      - docker
+      - audio
+      - video
 
 files:
   "/etc/sudoers.d/10-wheel":
@@ -49,6 +52,3 @@ files:
       account     include     login
       session     include     login
       password    include     login
-
-postinstall:
-  - usermod -aG docker,audio,video mrrain
