@@ -2,7 +2,8 @@ name: Build and Push Azari Image
 
 on:
   schedule:
-    - cron: "0 2 * * *"
+    # Run every Tuesday at 00:00 UTC
+    - cron: "0 0 * * 2"
   push:
     branches:
       - main
@@ -24,7 +25,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
@@ -75,7 +76,7 @@ jobs:
         run: |
           azari build --config ./azari.yaml --version "${{ env.IMAGE_VERSION }}" --image "${{ env.IMAGE }}"
 
-      - name: Push image to GHCR
+      - name: Push image
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io --username "${{ github.actor }}" --password-stdin
           azari push --config ./azari.yaml --version "${{ env.IMAGE_VERSION }}" --image "${{ env.IMAGE }}"
