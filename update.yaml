@@ -21,7 +21,8 @@ systemd:
         description: Auto update Azari OS
         after: network-online.target
       timer:
-        on-calendar: 2h
+        on-boot-sec: 15m
+        on-unit-active-sec: 2h
         randomized-delay-sec: 30m
       install:
         wanted-by: timers.target
