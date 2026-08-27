@@ -8,7 +8,7 @@ packages:
   - hyprpicker
   - hyprshot
   - cliphist
-  - cava
+  - noctalia
 
   - uwsm
   - gnome-keyring
@@ -20,6 +20,7 @@ packages:
   - gvfs-mtp
   - ffmpegthumbnailer
   - adwaita-icon-theme
+  - ddcutil
 
   - ghostty
   - nautilus
@@ -44,4 +45,4 @@ systemd:
       enabled: true
 
 postinstall:
-  - su mrrain -c "paru -S --noconfirm ffmpeg-audio-thumbnailer code-marketplace noctalia-shell"
+  - su mrrain -c "paru -S --noconfirm ffmpeg-audio-thumbnailer code-marketplace"
