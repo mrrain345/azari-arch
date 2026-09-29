@@ -24,8 +24,6 @@ packages:
 
   - ghostty
   - nautilus
-  - file-roller
-  - papers
   - ghostty-nautilus
   - code
   - gnome-disk-utility

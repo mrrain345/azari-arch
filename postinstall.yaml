@@ -18,15 +18,15 @@ files:
         com.belmoussaoui.Authenticator \
         com.github.tchx84.Flatseal \
         com.google.Chrome \
-        com.obsproject.Studio \
         io.bassi.Amberol \
         io.github.celluloid_player.Celluloid \
         io.github.kolunmi.Bazaar \
         io.missioncenter.MissionCenter \
-        it.mijorus.smile \
         org.gimp.GIMP \
         org.gnome.Calculator \
         org.gnome.Loupe \
+        org.gnome.Papers \
+        org.gnome.SimpleScan \
         org.gnome.TextEditor \
         org.gnome.World.PikaBackup \
         org.nickvision.tubeconverter \
