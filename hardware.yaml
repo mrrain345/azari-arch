@@ -1,13 +1,24 @@
 packages:
+  # Hardware
   - linux-headers
-  - networkmanager
   - fwupd
-  - cups
-  - bluez
   - lshw
   - intel-ucode
   - power-profiles-daemon
 
+  # Network & Bluetooth
+  - networkmanager
+  - bluez
+
+  # Printer
+  - cups
+  - cups-filters
+  - cups-pdf
+  - hplip
+  - avahi
+  - nss-mdns
+
+  # Graphics
   - mesa
   - mesa-utils
   - nvidia-open-dkms
@@ -20,6 +31,7 @@ packages:
   - vulkan-mesa-layers
   - vulkan-tools
 
+  # Video Codecs
   - gstreamer
   - gst-plugins-base
   - gst-plugins-good
@@ -27,6 +39,7 @@ packages:
   - gst-plugins-ugly
   - gst-libav
 
+  # Audio
   - pipewire
   - pipewire-audio
   - pipewire-alsa
